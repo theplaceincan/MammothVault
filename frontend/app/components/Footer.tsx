@@ -29,7 +29,7 @@ export default function Footer() {
           <p className="info-title">INFO</p>
           <div className="info-section">
             <p className="info-text">702-999-9999</p>
-            <p className="info-text">9999 St Joe Street, Las Vegas, NV, 89101</p>
+            {/* <p className="info-text">9999 St Joe Street, Las Vegas, NV, 89101</p> */}
           </div>
         </div>
       </div>
