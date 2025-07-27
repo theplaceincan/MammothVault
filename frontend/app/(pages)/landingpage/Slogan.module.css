@@ -1,0 +1,18 @@
+.slogan-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 20vh;
+}
+
+.slogan-text {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px)  {
+  .slogan-text {
+    font-size: 35px;
+  }
+}

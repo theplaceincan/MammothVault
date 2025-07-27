@@ -1,0 +1,114 @@
+.hero-section {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Hero Image Carousel
+*************************************/
+
+.image-strip {
+  display: flex;
+  width: calc(25% * 12);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  animation: scroll-left 70s linear infinite;
+  transition: opacity 0.3s ease;
+  /* fyi remove this to enable zoom in images on hover */
+  pointer-events: none; 
+}
+
+@media (max-width: 768px)  {
+  .image-strip {
+    width: calc(25% * 25);
+    animation: scroll-left 25s linear infinite;
+  }
+}
+
+.image-wrapper {
+  width: 25%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: opacity 0.3s ease, z-index 0.3s ease;
+  z-index: 1;
+  opacity: 0.3;
+}
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Hover zoom effect */
+.image-strip:hover {
+  animation-play-state: paused;
+}
+.image-strip:hover .image-wrapper {
+  opacity: 1;
+}
+.image-strip:hover .image-wrapper:hover {
+  z-index: 10;
+}
+.image-strip:hover .image-wrapper:hover .image-inner img {
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
+}
+.image-strip:hover + .hero-text-container {
+  opacity: 0.1;
+}
+
+.image-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.image-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero text section
+*************************************/
+
+.hero-text-container {
+  text-align: center;
+  z-index: 20;
+  position: relative;
+  pointer-events: none; /* Makes sure text is not affected by image hovers */
+  color: white; /* Optional for visibility */
+}
+
+.hero-text {
+  font-weight: 600;
+  font-size: 80px;
+}
+
+@media (max-width: 768px)  {
+  .hero-text {
+    font-size: 35px;
+  }
+}
