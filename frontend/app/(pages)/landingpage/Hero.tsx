@@ -3,6 +3,8 @@ import Image from "next/image"
 // className={styles.}
 
 export default function Hero() {
+  const priorityImages = [1, 6, 4, 2];
+
   return (
     <div className={styles["hero-section"]}>
       <div className={styles["image-strip"]}>
@@ -13,8 +15,8 @@ export default function Hero() {
                 fill
                 src={`/hero-imgs/${i}.JPEG`}
                 alt=""
-                priority={idx < 2}
-                sizes="25vw" // <-- ADD THIS LINE
+                priority={priorityImages.includes(i)}
+                sizes="25vw"
               />
             </div>
           </div>
