@@ -1,4 +1,4 @@
-import { request, gql } from 'graphql-request';
+// import { request, gql } from 'graphql-request';
 
 const query = `
   query GetProducts {

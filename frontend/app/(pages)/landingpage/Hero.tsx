@@ -1,4 +1,5 @@
 import styles from "./Hero.module.css"
+import Image from "next/image"
 // className={styles.}
 
 export default function Hero() {
@@ -8,7 +9,7 @@ export default function Hero() {
       {[1, 6, 4, 2, 3, 5, 1, 6, 4, 2, 3, 5].map((i, idx) => (
         <div key={idx} className={styles["image-wrapper"]}>
           <div className={`${styles["image-inner"]}`}>
-            <img src={`/hero-imgs/${i}.JPEG`} alt="" />
+            <Image fill src={`/hero-imgs/${i}.JPEG`} alt="" />
           </div>
         </div>
       ))}

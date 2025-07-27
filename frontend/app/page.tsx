@@ -1,18 +1,18 @@
 'use client';
 import LandingPage from "./(pages)/landingpage/page";
-import Products from "./(pages)/products/page";
+// import Products from "./(pages)/products/page";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import "./css/Home.css"
 
 export default function Home() {
-  const router = useRouter();
-  const isSignedIn = false;
+  // const router = useRouter();
+  // const isSignedIn = false;
   const [isOfAge, setIsOfAge] = useState<boolean | null>(null);
   const [answeredAge, setAnsweredAge] = useState<boolean>(false);
 
-  // Remembering age in local storage for one-time ask
+  // for remembering age in local storage for one-time ask
   useEffect(() => {
     const storedAgeStatus = localStorage.getItem("isOfAge");
     if (storedAgeStatus === "true") setIsOfAge(true);

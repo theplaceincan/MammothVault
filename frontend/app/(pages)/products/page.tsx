@@ -26,6 +26,7 @@ interface ProductVariant {
 interface Product {
   id: string;
   title: string;
+  handle: string;
   descriptionHtml: string;
   images: {
     edges: { node: ProductImage }[];
@@ -45,27 +46,58 @@ export default function ProductsPage() {
         const res = await fetchProduct();
         if (res.errors) {
           console.error("GraphQL Errors:", res.errors);
-          throw new Error(res.errors.map((e: any) => e.message).join("\n"));
+          throw new Error(res.errors.map((e: { message: string }) => e.message).join("\n"));
         }
         const edges = res.data.products.edges;
-        const productList = edges.map((edge: any) => edge.node);
+        const productList = edges.map((edge: { node: Product }) => edge.node);
         setProducts(productList);
-      } catch (err: any) {
-        setError(err.message || 'Unknown error');
+
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
       }
     }
 
     loadProducts();
   }, []);
 
-  // {error && <p style={{ color: 'red' }}>Error: {error}</p>}
   return (
     <>
       <Navbar />
       <div className={styles["page-container"]}>
         <p className={styles["page-title"]}>SHOP PRODUCTS</p>
         <div className={styles["products-container"]}>
-          <Link href={"/"} className={styles["product-card"]}>
+          {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+          {products.map((product) => {
+            const firstImage = product.images.edges[0]?.node;
+            const firstVariant = product.variants.edges[0]?.node;
+            return (
+              <Link href={`/product/${product.handle || product.id}`} key={product.id} className={styles["product-card"]}>
+                <div className={styles["img-cover"]}>
+                  {firstImage && (
+                    <Image
+                      className={styles["bottom-left-cut"]}
+                      width={170}
+                      height={170}
+                      src={firstImage.url}
+                      alt={firstImage.altText || product.title}
+                    />
+                  )}
+                </div>
+                <div className={styles["text-cover"]}>
+                  <p className={styles["card-title"]}>{product.title}</p>
+                  <p className={styles["card-price"]}>
+                    {firstVariant ? `$${parseFloat(firstVariant.price.amount).toFixed(2)} ${firstVariant.price.currencyCode}` : "N/A"}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+
+          {/* <Link href={"/"} className={styles["product-card"]}>
             <div className={styles["img-cover"]}>
               <Image className={styles["bottom-left-cut"]} width={170} height={10} src="/hero-imgs/1.JPEG" alt='1'></Image>
             </div>
@@ -73,7 +105,7 @@ export default function ProductsPage() {
               <p className={styles["card-title"]}>Title</p>
               <p className={styles["card-price"]}>$99.22</p>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
       <Footer />
