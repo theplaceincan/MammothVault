@@ -9,10 +9,23 @@ export default function Hero() {
       {[1, 6, 4, 2, 3, 5, 1, 6, 4, 2, 3, 5].map((i, idx) => (
         <div key={idx} className={styles["image-wrapper"]}>
           <div className={`${styles["image-inner"]}`}>
-            <Image fill src={`/hero-imgs/${i}.JPEG`} alt="" />
+            <Image
+              fill
+              src={`/hero-imgs/${i}.JPEG`}
+              alt=""
+              // Add the priority prop only for the first 2 images
+              priority={idx < 2} 
+            />
           </div>
         </div>
       ))}
+      {/* {[1, 6, 4, 2, 3, 5, 1, 6, 4, 2, 3, 5].map((i, idx) => (
+        <div key={idx} className={styles["image-wrapper"]}>
+          <div className={`${styles["image-inner"]}`}>
+            <Image fill src={`/hero-imgs/${i}.JPEG`} alt="" />
+          </div>
+        </div>
+      ))} */}
     </div>
       <div className={styles["hero-text-container"]}>
         <p className={styles["hero-subtext"]}>Welcome to the</p>
