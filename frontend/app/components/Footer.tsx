@@ -20,16 +20,16 @@ export default function Footer() {
           </div>
         </div>
         <div className="info-container">
-          <p className="info-title">ABOUT</p>
+          <p className="info-title">INFO</p>
           <div className="info-section">
-            <p className="info-text">Mammoth Vault is your tactical source for great gun parts — built tough, built to last, back from extinction.</p>
+            <p className="info-text">themammothvault@gmail.com</p>
+            {/* <p className="info-text">9999 St Joe Street, Las Vegas, NV, 89101</p> */}
           </div>
         </div>
         <div className="info-container">
-          <p className="info-title">INFO</p>
+          <p className="info-title">ABOUT</p>
           <div className="info-section">
-            <p className="info-text">702-999-9999</p>
-            {/* <p className="info-text">9999 St Joe Street, Las Vegas, NV, 89101</p> */}
+            <p className="info-text">Mammoth Vault is your tactical source for great gun parts — built tough, built to last, back from extinction.</p>
           </div>
         </div>
       </div>

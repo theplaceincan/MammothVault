@@ -40,6 +40,10 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  function slugify(str: string) {
+    return str.toLowerCase().replace(/\s+/g, '-');
+  }
+
   useEffect(() => {
     async function loadProducts() {
       try {
@@ -75,7 +79,7 @@ export default function ProductsPage() {
             const firstImage = product.images.edges[0]?.node;
             const firstVariant = product.variants.edges[0]?.node;
             return (
-              <Link href={`/product/${product.handle || product.id}`} key={product.id} className={styles["product-card"]}>
+              <Link href={`/products/${product.handle}`} key={product.id} className={styles["product-card"]}>
                 <div className={styles["img-cover"]}>
                   {firstImage && (
                     <Image
@@ -96,16 +100,6 @@ export default function ProductsPage() {
               </Link>
             );
           })}
-
-          {/* <Link href={"/"} className={styles["product-card"]}>
-            <div className={styles["img-cover"]}>
-              <Image className={styles["bottom-left-cut"]} width={170} height={10} src="/hero-imgs/1.JPEG" alt='1'></Image>
-            </div>
-            <div className={styles["text-cover"]}>
-              <p className={styles["card-title"]}>Title</p>
-              <p className={styles["card-price"]}>$99.22</p>
-            </div>
-          </Link> */}
         </div>
       </div>
       <Footer />

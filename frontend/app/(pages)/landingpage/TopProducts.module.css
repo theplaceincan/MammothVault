@@ -29,7 +29,7 @@
 }
 
 .product-card {
-  transition: background-color 0.2s ease;
+  transition: box-shadow 0.1s ease;
   width: 300px;
   padding: 10px;
   display: flex;
@@ -39,7 +39,7 @@
 }
 
 .product-card:hover {
-  background-color: var(--color-zinc-800);
+  box-shadow: 0px 0px 20px var(--color-zinc-800);
 }
 
 .img-cover {

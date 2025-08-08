@@ -7,9 +7,8 @@ const query = `
         node {
           id
           title
-          descriptionHtml # <-- Get the product description as HTML
-          
-          # Get the first product image
+          handle   # ← ADD THIS LINE
+          descriptionHtml
           images(first: 1) {
             edges {
               node {
@@ -18,12 +17,10 @@ const query = `
               }
             }
           }
-
-          # Get the first product variant for price and cart ID
           variants(first: 1) {
             edges {
               node {
-                id # <-- This is the ID needed to add this item to the cart
+                id
                 price {
                   amount
                   currencyCode
@@ -36,6 +33,7 @@ const query = `
     }
   }
 `;
+
 
 export default async function fetchProduct() {
   try {

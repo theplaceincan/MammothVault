@@ -15,17 +15,21 @@
 }
 
 .products-container {
+  padding: 20px;
   background-color: var(--color-zinc-900);
-  max-width: 1200px;
+  max-width: 1600px;
   width: 100%;
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* Product cards
 *************************************/
 
 .product-card {
-  transition: background-color 0.2s ease;
+  transition: border 0.2s ease;
+  border: 2px solid transparent;
   max-width: 250px;
   padding: 10px;
   display: flex;
@@ -35,7 +39,7 @@
 }
 
 .product-card:hover {
-  background-color: var(--color-zinc-800);
+  border: 2px solid var(--color-zinc-700);
 }
 
 .img-cover {
