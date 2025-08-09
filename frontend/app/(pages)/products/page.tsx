@@ -36,7 +36,7 @@ interface Product {
   };
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
 
