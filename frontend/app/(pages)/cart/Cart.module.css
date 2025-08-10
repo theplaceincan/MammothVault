@@ -1,0 +1,157 @@
+.page-container {
+  min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+.empty {
+  margin: 24px 0;
+}
+.link {
+  text-decoration: underline;
+}
+
+.lines {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  display: grid;
+  gap: 12px;
+}
+.line {
+  display: grid;
+  grid-template-columns: 96px 1fr auto auto auto;
+  gap: 12px;
+  align-items: center;
+  background: #111;
+  padding: 12px;
+}
+
+.thumb {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+}
+.info-container {
+  display: grid;
+  gap: 2px;
+}
+.title {
+  width: fit-content;
+  font-weight: 600;
+}
+.title:hover {
+  width: fit-content;
+  font-weight: 600;
+  color: #c7c7c7;
+}
+.variant {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+.price {
+  font-size: 0.9rem;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+}
+.quantity-container > button {
+  width: 28px;
+  height: 28px;
+}
+.quantity-container > input {
+  width: 56px;
+  text-align: center;
+}
+
+.lineTotal {
+  font-weight: 600;
+}
+.summary {
+  margin-top: 20px;
+  padding: 16px;
+  background: #121212;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-checkout {
+  font-weight: 600;
+  border: 1px solid transparent;
+  background-color: #00a11b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-checkout:hover {
+  background-color: #008414;
+}
+
+.quantity-input {
+  margin-left: 5px;
+  margin-right: 5px;
+  outline: none;
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #5c5c5c;
+}
+.quantity-input:hover {
+  border: 1px solid #777777;
+}
+.quantity-input:focus {
+  border: 1px solid #00a11b;
+}
+
+.btn-input-increase {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-input-decrease {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #444;
+  padding: 6px 10px;
+}
+.btn-remove:hover {
+  background-color: var(--color-red-950);
+}
+.btn-remove:active {
+  background-color: var(--color-red-900);
+}
+
+.btn-clear-cart {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #444;
+  padding: 10px 16px;
+}
+.btn-clear-cart:hover {
+  background-color: var(--color-red-950);
+}
+.btn-clear-cart:active {
+  background-color: var(--color-red-900);
+}

@@ -19,7 +19,7 @@ interface Price {
 }
 
 interface ProductVariant {
-  id: string; // this is the variant id for the cart
+  id: string;
   price: Price;
 }
 
@@ -48,9 +48,9 @@ export default function ProductsPage() {
     (async () => {
       try {
         const res = await fetchProduct();
-        if (res.errors) throw new Error(res.errors.map((e: { message:string }) => e.message).join('\n'));
+        if (res.errors) throw new Error(res.errors.map((e: { message: string }) => e.message).join('\n'));
         setProducts(res.data.products.edges.map((e: { node: Product }) => e.node));
-      } catch (e:any) {
+      } catch (e: any) {
         setError(e.message ?? 'Unknown error');
       }
     })();
@@ -62,6 +62,15 @@ export default function ProductsPage() {
       <Navbar />
       <div className={styles["page-container"]}>
         <p className={styles["page-title"]}>SHOP PRODUCTS</p>
+        {/* <div className={styles["search-container"]}>
+          <div className={styles["search-wrap"]}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={styles["search-icon"]}>
+              <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+            <input placeholder="Search product here" className={styles["search-input"]} />
+          </div>
+        </div> */}
+
         <div className={styles["products-container"]}>
           {error && <p style={{ color: 'red' }}>Error: {error}</p>}
           {products.map((product) => {

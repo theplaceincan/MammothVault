@@ -24,6 +24,47 @@
   flex-wrap: wrap;
 }
 
+/* Search section
+*************************************/
+
+.search-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--color-zinc-800);
+  border: 2px solid transparent;
+  outline: none;
+  padding: 10px 14px 10px 40px;
+  box-sizing: border-box;
+}
+
+.search-input:focus { 
+  border-color: var(--color-zinc-600); 
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
 /* Product cards
 *************************************/
 
@@ -70,11 +111,5 @@
 }
 
 .bottom-left-cut {
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 100%,
-    15px 100%,
-    0 calc(100% - 15px)
-  );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 15px 100%, 0 calc(100% - 15px));
 }

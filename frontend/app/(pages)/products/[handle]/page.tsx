@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import ProductActions from "./ProductActions";
 
 interface Props {
   params: { handle: string };
@@ -28,8 +29,6 @@ export default async function ProductPage({ params }: Props) {
   
   const firstImage = product.images.edges[0]?.node;
 
-  console.log(product)
-
   return (
     <>
       <Navbar />
@@ -45,11 +44,9 @@ export default async function ProductPage({ params }: Props) {
               <div className={styles["product-details"]}>
                 <p className={styles["title"]}>{product.title}</p>
                 <p className={styles["price"]}>{costText}</p>
-                <input type="number" className={styles["quantity-input"]} defaultValue={1} min={1} />
               </div>
               <div className={styles["btn-container"]}>
-                <button className={styles["btn-cart"]}>Add to Cart</button>
-                <button className={styles["btn-buy"]}>Buy Now</button>
+                {variantId && <ProductActions variantId={variantId}/>}
               </div>
             </div>
           </div>
@@ -62,15 +59,3 @@ export default async function ProductPage({ params }: Props) {
     </>
   );
 }
-
-// <h1>{product.title}</h1>
-//         {firstImage && (
-//           <Image
-//             priority
-//             src={firstImage.url}
-//             alt={firstImage.altText || product.title}
-//             width={500}
-//             height={500}
-//           />
-//         )}
-//         <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
