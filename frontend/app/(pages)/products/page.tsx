@@ -36,7 +36,7 @@ interface Product {
   };
 }
 
-export default async function ProductsPage() {
+export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,27 +45,16 @@ export default async function ProductsPage() {
   }
 
   useEffect(() => {
-    async function loadProducts() {
+    (async () => {
       try {
         const res = await fetchProduct();
-        if (res.errors) {
-          console.error("GraphQL Errors:", res.errors);
-          throw new Error(res.errors.map((e: { message: string }) => e.message).join("\n"));
-        }
-        const edges = res.data.products.edges;
-        const productList = edges.map((edge: { node: Product }) => edge.node);
-        setProducts(productList);
-
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('An unknown error occurred');
-        }
+        if (res.errors) throw new Error(res.errors.map((e: { message:string }) => e.message).join('\n'));
+        setProducts(res.data.products.edges.map((e: { node: Product }) => e.node));
+      } catch (e:any) {
+        setError(e.message ?? 'Unknown error');
       }
-    }
+    })();
 
-    loadProducts();
   }, []);
 
   return (

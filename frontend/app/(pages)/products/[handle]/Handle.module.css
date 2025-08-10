@@ -1,30 +1,55 @@
-.container {
-  min-height: 100vh;
+.page {
   width: 100%;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: start;
   justify-content: center;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
 .product-container {
-  width: 100%;
-  padding: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-start;
 }
 
-.image-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+.description-container {
+  margin-top: 40px;
+  border-top: 1px solid var(--color-zinc-600);
+  padding: 10px;
 }
 
 .info-container {
-  flex: 2;
-  padding: 20px;
+  width: 100%;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.image-box {
+  position: relative;
+  width: 260px;                     /* pick a size you like */
+  height: 260px;
+  flex: 0 0 auto;                   /* don't grow/shrink with text */
+}
+
+.image-box :global(img) {
+  object-fit: contain;              /* keep aspect ratio */
+}
+
+/* .image-container img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+} */
 
 .title {
   font-size: 24px;
@@ -33,11 +58,11 @@
 
 .price {
   font-size: 17px;
-  color: #b7eec0;
+  color: var(--color-zinc-400);
 }
 
 .description {
-  font-size: 16px;
+  font-size: 14px;
   color: #cfcfcf;
   margin-bottom: 20px;
 }
@@ -59,6 +84,11 @@
 
 .btn-cart:hover {
   background-color: #dddddd;
+}
+
+.btn-card-added {
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
 }
 
 .btn-buy {
@@ -84,9 +114,13 @@
     width: 100%;
     padding: 10px;
   }
+
+  .image-box { width: 60vw; height: 60vw; }
 }
 
 .quantity-input {
+  margin-top: 17px;
+  margin-bottom: 10px;
   outline: none;
   width: 60px;
   padding: 5px;

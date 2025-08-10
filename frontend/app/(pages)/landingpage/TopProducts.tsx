@@ -5,7 +5,7 @@ import Image from "next/image"
 export default function TopProducts() {
   return (
     <div className={styles["container"]}>
-      <Link href={"/"} className={styles["product-card"]}>
+      <Link href={"/products"} className={styles["product-card"]}>
         <div className={styles["img-cover"]}>
           <Image width={200} height={10} src="/vault.png" alt='1'></Image>
         </div>
@@ -14,7 +14,7 @@ export default function TopProducts() {
         </div>
       </Link>
       <div className="desktop-spacer"></div>
-      <Link href={"/"} className={styles["product-card"]}>
+      <Link href={"/products"} className={styles["product-card"]}>
         <div className={styles["img-cover"]}>
           <Image width={200} height={10} src="/vault.png" alt='1'></Image>
         </div>

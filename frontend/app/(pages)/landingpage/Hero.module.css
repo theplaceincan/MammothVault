@@ -98,7 +98,7 @@
 
 /* 3. Hide text when strip is hovered */
 .image-strip:hover + .hero-text-container {
-  opacity: 0;
+  opacity: 0.3;
 }
 
 .hero-text {

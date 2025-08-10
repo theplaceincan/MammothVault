@@ -55,3 +55,32 @@ export async function getSingleProduct(handle: string) {
     throw error;
   }
 }
+
+
+// app/lib/shopify-admin.ts
+export async function getVariantCost(variantGid: string) {
+  const query = `
+    query GetCost($id: ID!) {
+      productVariant(id: $id) {
+        id
+        inventoryItem {
+          unitCost { amount currencyCode }
+        }
+      }
+    }`;
+
+  const r = await fetch(
+    `https://${process.env.SHOPIFY_SHOP}/admin/api/${process.env.SHOPIFY_API_VERSION}/graphql.json`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_TOKEN!,
+      },
+      body: JSON.stringify({ query, variables: { id: variantGid } }),
+      cache: 'no-store',
+    }
+  );
+  const json = await r.json();
+  return json.data?.productVariant?.inventoryItem?.unitCost ?? null;
+}

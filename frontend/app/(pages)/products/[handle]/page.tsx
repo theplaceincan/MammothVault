@@ -1,4 +1,4 @@
-import { getSingleProduct } from "@/app/services/getSingleProduct";
+import { getSingleProduct, getVariantCost } from "@/app/services/getSingleProduct";
 import styles from "./Handle.module.css";
 import Image from "next/image";
 
@@ -18,38 +18,50 @@ export default async function ProductPage({ params }: Props) {
   }
 
   const product = productData.data.product;
+  const variantId = product.variants.edges[0]?.node?.id as string;
+
+  type UnitCost = { amount: string; currencyCode: string } | null;
+  const unitCost: UnitCost = variantId ? await getVariantCost(variantId) : null;
+  const costText = unitCost
+    ? `$${Number(unitCost.amount).toFixed(2)} ${unitCost.currencyCode}`
+    : '—';
+  
   const firstImage = product.images.edges[0]?.node;
+
+  console.log(product)
 
   return (
     <>
       <Navbar />
-      <div className={styles["container"]}>
-        <div className={styles["product-container"]}>
-          <div className={styles["image-container"]}>
-            <Image src="/logos/standard.jpg" alt="Logo" width={100} height={100} />
-          </div>
-          <div className={styles["info-container"]}>
-            <div className={styles["product-details"]}>
-              <p className={styles["title"]}>Product Title</p>
-              <p className={styles["price"]}>599.64</p>
-              <input type="number" className={styles["quantity-input"]} defaultValue={1} min={1} />
+      <div className={styles["page"]}>
+        <div className={styles["container"]}>
+          <div className={styles["product-container"]}>
+            <div className={styles["image-container"]}>
+              <div className={styles["image-box"]}>
+                <Image src={firstImage?.url ?? "/logos/standard.jpg"} alt={firstImage?.altText || product.title} fill sizes="(max-width:768px) 60vw, 260px" priority/>
+              </div>
             </div>
-            <div className={styles["btn-container"]}>
-              <button className={styles["btn-cart"]}>Add to Cart</button>
-              <button className={styles["btn-buy"]}>Buy Now</button>
+            <div className={styles["info-container"]}>
+              <div className={styles["product-details"]}>
+                <p className={styles["title"]}>{product.title}</p>
+                <p className={styles["price"]}>{costText}</p>
+                <input type="number" className={styles["quantity-input"]} defaultValue={1} min={1} />
+              </div>
+              <div className={styles["btn-container"]}>
+                <button className={styles["btn-cart"]}>Add to Cart</button>
+                <button className={styles["btn-buy"]}>Buy Now</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles["description-container"]}>
-          <p className={styles["description"]}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, atque! Quos, labore? Perspiciatis expedita commodi quibusdam quam ratione possimus illo voluptatibus ducimus nemo! Tenetur magni maiores aperiam ducimus, sequi aspernatur.</p>
+          <div className={styles["description-container"]}>
+            <p className={styles["description"]}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, atque! Quos, labore? Perspiciatis expedita commodi quibusdam quam ratione possimus illo voluptatibus ducimus nemo! Tenetur magni maiores aperiam ducimus, sequi aspernatur.</p>
+          </div>
         </div>
       </div>
       <Footer />
     </>
   );
 }
-
-
 
 // <h1>{product.title}</h1>
 //         {firstImage && (
