@@ -6,11 +6,12 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ProductActions from "./ProductActions";
 
-interface Props {
-  params: { handle: string };
-}
+// interface Props {
+//   params: { handle: string };
+// }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: { params: { handle: string } }) {
+  
   const { handle } = params;
   const productData = await getSingleProduct(handle);
 
