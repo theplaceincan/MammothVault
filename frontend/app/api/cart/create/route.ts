@@ -43,8 +43,9 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(json.data.cartCreate.cart);
-  } catch (e: any) {
-    console.error("Cart create route exception:", e);
-    return NextResponse.json({ error: e?.message ?? "Cart create failed" }, { status: 500 });
+  } catch (e: unknown) {
+    const err_msg = e instanceof Error ? e.message : String(e);
+    console.log(err_msg || 'Unknown error');
+    return NextResponse.json({ error: err_msg ?? "Cart create failed" }, { status: 500 });
   }
 }

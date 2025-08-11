@@ -8,6 +8,9 @@ export default function ProductActions({ variantId }: { variantId: string }) {
   const [loading, setLoading] = useState(false);
   const [added, setAdded] = useState(false); // <-- new
 
+  type CartEdge = { node: { merchandise?: { id: string } | null } };
+  type CartGet = { lines?: { edges?: CartEdge[] } };
+
   useEffect(() => {
     const id = localStorage.getItem('cartId');
     setCartId(id);
@@ -15,9 +18,9 @@ export default function ProductActions({ variantId }: { variantId: string }) {
     (async () => {
       const res = await fetch(`/api/cart/get?id=${encodeURIComponent(id)}`, { cache: 'no-store' });
       if (!res.ok) return;
-      const cart = await res.json();
+      const cart: CartGet = await res.json();
       const hasThisVariant = cart?.lines?.edges?.some(
-        (e: any) => e?.node?.merchandise?.id === variantId
+        (edge) => edge?.node?.merchandise?.id === variantId
       );
       setAdded(!!hasThisVariant);
     })();

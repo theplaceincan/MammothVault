@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
@@ -39,7 +39,7 @@ export default function CartPage() {
   const cartId =
     typeof window !== 'undefined' ? localStorage.getItem('cartId') : null;
 
-  async function loadCart() {
+  const loadCart = useCallback(async () => {
     if (!cartId) {
       setCart(null);
       setLoading(false);
@@ -52,13 +52,11 @@ export default function CartPage() {
     const data = res.ok ? await res.json() : null;
     setCart(data);
     setLoading(false);
-    console.log(data)
-  }
-
+  }, [cartId]);
 
   useEffect(() => {
     loadCart();
-  }, [cartId]);
+  }, [loadCart]);
 
   async function updateQuantity(lineId: string, quantity: number) {
     if (!cartId) return;
@@ -142,8 +140,8 @@ export default function CartPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
                       </svg>
                     </button>
-                    <input className={styles["quantity-input"]} type="number" min={1} value={node.quantity} onChange={(e) => updateQuantity( node.id, Math.max(1, Number(e.target.value)) )} disabled={busyLine === node.id}/>
-                    <button className={styles["btn-input-increase"]} aria-label="Increase" onClick={() => updateQuantity(node.id, node.quantity + 1) } disabled={busyLine === node.id}>
+                    <input className={styles["quantity-input"]} type="number" min={1} value={node.quantity} onChange={(e) => updateQuantity(node.id, Math.max(1, Number(e.target.value)))} disabled={busyLine === node.id} />
+                    <button className={styles["btn-input-increase"]} aria-label="Increase" onClick={() => updateQuantity(node.id, node.quantity + 1)} disabled={busyLine === node.id}>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                       </svg>
@@ -159,7 +157,7 @@ export default function CartPage() {
                 </li>
               ))}
             </ul>
-            
+
             <div className={styles['summary']}>
               <div className={styles['row']}>
                 <span>Subtotal</span>

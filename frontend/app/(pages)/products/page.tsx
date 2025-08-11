@@ -40,9 +40,9 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  function slugify(str: string) {
-    return str.toLowerCase().replace(/\s+/g, '-');
-  }
+  // function slugify(str: string) {
+  //   return str.toLowerCase().replace(/\s+/g, '-');
+  // }
 
   useEffect(() => {
     (async () => {
@@ -50,8 +50,9 @@ export default function ProductsPage() {
         const res = await fetchProduct();
         if (res.errors) throw new Error(res.errors.map((e: { message: string }) => e.message).join('\n'));
         setProducts(res.data.products.edges.map((e: { node: Product }) => e.node));
-      } catch (e: any) {
-        setError(e.message ?? 'Unknown error');
+      } catch (e: unknown) {
+        const err_msg = e instanceof Error ? e.message : String(e);
+        setError(err_msg || 'Unknown error');
       }
     })();
 
