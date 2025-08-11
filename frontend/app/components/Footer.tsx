@@ -8,15 +8,15 @@ export default function Footer() {
         <div className="info-container">
           <p className="info-title">NAVIGATE</p>
           <div className="info-section">
-            <a className="footer-text-btn">Contact Us</a>
-            <a className="footer-text-btn">Shop</a>
+            <a href={"/contact"} className="footer-text-btn">Contact Us</a>
+            <a href={"/products"} className="footer-text-btn">Shop</a>
           </div>
         </div>
         <div className="info-container">
           <p className="info-title">COLLECTIONS</p>
           <div className="info-section">
-            <a className="footer-text-btn">The Vault</a>
-            <a className="footer-text-btn">The Drop</a>
+            <a href={"/products"} className="footer-text-btn">The Vault</a>
+            <a href={"/products"} className="footer-text-btn">The Drop</a>
           </div>
         </div>
         <div className="info-container">

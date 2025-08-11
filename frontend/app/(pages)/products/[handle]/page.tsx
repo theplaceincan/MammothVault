@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: Props) {
     : '—';
   
   const firstImage = product.images.edges[0]?.node;
-
+  
   return (
     <>
       <Navbar />
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
           <div className={styles["description-container"]}>
-            <p className={styles["description"]}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, atque! Quos, labore? Perspiciatis expedita commodi quibusdam quam ratione possimus illo voluptatibus ducimus nemo! Tenetur magni maiores aperiam ducimus, sequi aspernatur.</p>
+            <div className={styles["description"]} dangerouslySetInnerHTML={{ __html: product.descriptionHtml ?? '' }}/>
           </div>
         </div>
       </div>
