@@ -6,15 +6,17 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ProductActions from "./ProductActions";
 
+// interface Props {
+//   params: { handle: string };
+// }
+
 export default async function ProductPage({
-  params,
-  searchParams,
-}: {
-  params: { handle: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+    params,
+  }: {
+    params: Promise<{ handle: string }>;
+  }) {
   
-  const { handle } = params;
+  const { handle } = await params;
   const productData = await getSingleProduct(handle);
 
   if (!productData?.data?.product) {
