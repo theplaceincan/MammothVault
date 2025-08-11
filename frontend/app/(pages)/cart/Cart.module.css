@@ -116,18 +116,20 @@
   border: 1px solid #00a11b;
 }
 
-.btn-input-increase {
+.btn-input-increase, .btn-input-decrease {
+  color: var(--color-zinc-300);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.btn-input-decrease {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn-input-decrease:hover, .btn-input-increase:hover {
+  color: white;
+}
+
+.btn-input-decrease:active, .btn-input-increase:active {
+  color: var(--color-zinc-300);
 }
 
 .btn-remove {

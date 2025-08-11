@@ -33,20 +33,7 @@ export async function getSingleProduct(handle: string) {
   };
 
   try {
-    // const baseUrl =
-    //   process.env.VERCEL_URL
-    //     ? `https://${process.env.VERCEL_URL}`
-    //     : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-
-    // const response = await fetch(`${baseUrl}/api/shopify`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ query, variables }),
-    // });
-
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : ''}/api/shopify`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'http://localhost:3000'}/api/shopify`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, variables }),

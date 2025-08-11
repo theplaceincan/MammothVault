@@ -89,7 +89,6 @@
 }
 
 .btn-cart-added {
-  pointer-events: none;
   border: 1px solid var(--color-zinc-700) !important;
   background-color: rgb(0, 0, 0);
   color: #dfdfdf;

@@ -34,8 +34,14 @@
 *************************************/
 
 .navbar-btn {
+  color: var(--color-zinc-200);
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.navbar-btn-active {
+  color: white;
+  font-weight: bold;
 }
 
 /* Sections
@@ -47,7 +53,7 @@
   min-width: 120px;
 }
 
-.navbar-btns {
+.navbar-btns-container {
   width: 100%;
   display: flex;
   justify-content: center;

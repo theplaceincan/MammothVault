@@ -58,23 +58,34 @@ export default function ProductsPage() {
 
   }, []);
 
+  // *** Search functionality begins ***
+  
+  const [query, setQuery] = useState("");
+  const filteredProducts = products.filter(p =>
+    p.title.toLowerCase().includes(query.toLowerCase()) ||
+    p.handle.toLowerCase().includes(query.toLowerCase()) ||
+    p.descriptionHtml.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // *** Search functionality begins ***
+
   return (
     <>
       <Navbar />
       <div className={styles["page-container"]}>
         <p className={styles["page-title"]}>SHOP PRODUCTS</p>
-        {/* <div className={styles["search-container"]}>
+        <div className={styles["search-container"]}>
           <div className={styles["search-wrap"]}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={styles["search-icon"]}>
               <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
-            <input placeholder="Search product here" className={styles["search-input"]} />
+            <input placeholder="Search product here" className={styles["search-input"]} value={query} onChange={(e) => setQuery(e.target.value)}/>
           </div>
-        </div> */}
+        </div>
 
         <div className={styles["products-container"]}>
           {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-          {products.map((product) => {
+          {filteredProducts.map((product) => {
             const firstImage = product.images.edges[0]?.node;
             const firstVariant = product.variants.edges[0]?.node;
             return (

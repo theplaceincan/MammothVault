@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from './Handle.module.css';
 
 export default function ProductActions({ variantId }: { variantId: string }) {
@@ -79,12 +80,20 @@ export default function ProductActions({ variantId }: { variantId: string }) {
         className={styles['quantity-input']}
       />
       <div className={styles['btn-container']}>
-        <button
-          onClick={onAddToCart}
-          disabled={loading}
-          className={added ? styles['btn-cart-added'] : styles['btn-cart']}>
-          {added ? 'Added To Cart' : 'Add to Cart'}
-        </button>
+        {added ? (
+          <Link href="/cart" className={styles['btn-cart-added']}>
+            Added To Cart
+          </Link>
+        ) : (
+          <button
+            onClick={onAddToCart}
+            disabled={loading}
+            className={styles['btn-cart']}
+          >
+            Add to Cart
+          </button>
+        )}
+
         <button onClick={onBuyNow} disabled={loading} className={styles['btn-buy']}>
           Buy Now
         </button>

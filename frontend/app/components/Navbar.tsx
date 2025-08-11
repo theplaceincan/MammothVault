@@ -3,10 +3,20 @@ import Image from "next/image";
 import "../css/Navbar.css"
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [logoIsHovered, setLogoIsHovered] = useState(false);
   const [totalQty, setTotalQty] = useState(0);
+
+  const navbar_paths = ["/products", "/about", "/contact"]
+  const current_path = usePathname();
+  function isOnPageCheck(curr_path: string, dest_path: string) {
+    console.log(curr_path)
+    console.log(dest_path)
+    if (curr_path == dest_path) return true;
+    return false;
+  }
 
   const cartId =
     typeof window !== 'undefined' ? localStorage.getItem('cartId') : null;
@@ -29,10 +39,13 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-      <div className="navbar-btns">
-        <Link className="navbar-btn" href={"/products"}>Shop</Link>
-        <Link className="navbar-btn" href={"/about"}>About</Link>
-        <Link className="navbar-btn" href={"/contact"}>Contact Us</Link>
+      <div className="navbar-btns-container">
+        <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[0]) ? "navbar-btn-active" : ""}`}
+          href={"/products"}>Shop</Link>
+        <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[1]) ? "navbar-btn-active" : ""}`}
+          href={"/about"}>About</Link>
+        <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[2]) ? "navbar-btn-active" : ""}`}
+          href={"/contact"}>Contact Us</Link>
       </div>
       <div className="navbar-right">
         <Link className="navbar-btn mini-count" href={"/cart"}>
