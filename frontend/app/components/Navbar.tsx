@@ -42,10 +42,10 @@ export default function Navbar() {
       <div className="navbar-btns-container">
         <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[0]) ? "navbar-btn-active" : ""}`}
           href={"/products"}>Shop</Link>
-        <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[1]) ? "navbar-btn-active" : ""}`}
+        {/* <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[1]) ? "navbar-btn-active" : ""}`}
           href={"/about"}>About</Link>
         <Link className={`navbar-btn ${isOnPageCheck(current_path, navbar_paths[2]) ? "navbar-btn-active" : ""}`}
-          href={"/contact"}>Contact Us</Link>
+          href={"/contact"}>Contact Us</Link> */}
       </div>
       <div className="navbar-right">
         <Link className="navbar-btn mini-count" href={"/cart"}>
