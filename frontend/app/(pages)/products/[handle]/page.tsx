@@ -45,6 +45,7 @@ export default async function ProductPage({
                 <Image src={firstImage?.url ?? "/logos/standard.jpg"} alt={firstImage?.altText || product.title} fill sizes="(max-width:768px) 60vw, 260px" priority/>
               </div>
             </div>
+            <div className="p-4"></div>
             <div className={styles["info-container"]}>
               <div className={styles["product-details"]}>
                 <p className={styles["title"]}>{product.title}</p>
