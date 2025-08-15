@@ -21,7 +21,7 @@
   animation: scroll-left 70s linear infinite;
   transition: opacity 0.3s ease;
   /* pointer-events removed so children can get hover */
-  /* pointer-events: none; */
+  pointer-events: all;
 }
 
 /* 1. Pause on hover */
@@ -33,6 +33,7 @@
   .image-strip {
     width: calc(25% * 25);
     animation: scroll-left 25s linear infinite;
+    pointer-events: none;
   }
 }
 
