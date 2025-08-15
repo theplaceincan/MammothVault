@@ -46,6 +46,10 @@
   padding-left: 10px;
 }
 
+.input:focus {
+  background-color: var(--color-zinc-700);
+}
+
 .label {
   text-align: left;
   width: 100%;

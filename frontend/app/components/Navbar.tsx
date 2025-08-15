@@ -12,8 +12,6 @@ export default function Navbar() {
   const navbar_paths = ["/products", "/about", "/contact"]
   const current_path = usePathname();
   function isOnPageCheck(curr_path: string, dest_path: string) {
-    console.log(curr_path)
-    console.log(dest_path)
     if (curr_path == dest_path) return true;
     return false;
   }
