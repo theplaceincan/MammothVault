@@ -24,16 +24,21 @@
   pointer-events: all;
 }
 
-/* 1. Pause on hover */
+/* 1. pause on hover */
 .image-strip:hover {
   animation-play-state: paused;
+}
+
+@media (max-width: 1024px) {
+  .image-strip {
+    pointer-events: none;
+  }
 }
 
 @media (max-width: 768px) {
   .image-strip {
     width: calc(25% * 25);
     animation: scroll-left 25s linear infinite;
-    pointer-events: none;
   }
 }
 
@@ -48,7 +53,7 @@
   z-index: 1;
 }
 
-/* 2. Fade non-hovered slides */
+/* 2. fade non-hovered slides */
 .image-strip:hover .image-wrapper:not(:hover) {
   opacity: 0.3;
 }
