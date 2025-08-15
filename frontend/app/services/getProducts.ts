@@ -7,7 +7,7 @@ const query = `
         node {
           id
           title
-          handle   # ← ADD THIS LINE
+          handle
           descriptionHtml
           images(first: 1) {
             edges {
